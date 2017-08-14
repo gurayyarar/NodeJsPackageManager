@@ -1,0 +1,13 @@
+footer {
+    height: 24px;
+    font-size: 12px;
+    display: table;
+    width: 100%;
+
+    .footer-container {
+        padding-left: 5px;
+        padding-right: 5px;
+        display: table-cell;
+        vertical-align: middle;
+    }
+}

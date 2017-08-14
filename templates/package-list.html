@@ -1,0 +1,6 @@
+<div class="search-no-result" ng-show="$root.packageList.length == 0">-- No packages --</div>
+<ul class="package-list">
+    <li ng-repeat="item in $root.packageList track by $index">
+        <package-list-item item="item"></package-list-item>
+    </li>
+</ul>

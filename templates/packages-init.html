@@ -1,0 +1,210 @@
+<div class="modal fade" id="packageInitModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel" ng-bind="$root.activeActivityBarMenuItem.packageManager + ' init'"></h4>
+            </div>
+            <div class="modal-body">
+                <div ng-show="$root.activeActivityBarMenuItem.packageManager === 'npm'">
+                    <form class="form-horizontal">
+                        <div class="form-group">
+                            <label for="name" class="col-sm-3 control-label">name</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" id="name" ng-model="form['npm'].name" placeholder="my-module">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="version" class="col-sm-3 control-label">version</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" id="version" ng-model="form['npm'].version" placeholder="1.0.0">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="description" class="col-sm-3 control-label">description</label>
+                            <div class="col-sm-9">
+                                <textarea rows="4" cols="8" class="form-control no-resize" id="description" ng-model="form['npm'].description" placeholder="A file module"></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="author_name" class="col-sm-3 control-label">author name</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" id="author_name" ng-model="form['npm'].author_name" placeholder="Name Surname">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="author_email" class="col-sm-3 control-label">author email</label>
+                            <div class="col-sm-9">
+                                <input type="email" class="form-control" id="author_email" ng-model="form['npm'].author_email" placeholder="example@example.com">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="author_url" class="col-sm-3 control-label">author url</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" id="author_url" ng-model="form['npm'].author_url" placeholder="http://www.example.com">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="license" class="col-sm-3 control-label">license</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" id="license" ng-model="form['npm'].license" placeholder="ISC">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="private" class="col-sm-3 control-label">private</label>
+                            <div class="col-sm-9">
+                                <select id="private" class="form-control" ng-model="form['npm'].private">
+                                    <option value="true">true</option>
+                                    <option value="false" selected>false</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="advanced-options">
+                            <div class="option-header">
+                                <a href="javascript:void(0);">Advanced Options</a>
+                            </div>
+                            <div class="option-content">
+                                <div class="form-group">
+                                    <label for="main" class="col-sm-3 control-label">main</label>
+                                    <div class="col-sm-9">
+                                        <input type="text" class="form-control" id="main" ng-model="form['npm'].main" placeholder="index.js">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="homepage" class="col-sm-3 control-label">homepage</label>
+                                    <div class="col-sm-9">
+                                        <input type="text" class="form-control" id="homepage" ng-model="form['npm'].homepage" placeholder="https://github.com/example">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="bugs_url" class="col-sm-3 control-label">bugs url</label>
+                                    <div class="col-sm-9">
+                                        <input type="text" class="form-control" id="bugs_url" ng-model="form['npm'].bugs_url" placeholder="https://github.com/example/issues">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="repository_type" class="col-sm-3 control-label">respository type</label>
+                                    <div class="col-sm-9">
+                                        <input type="text" class="form-control" id="repository_type" ng-model="form['npm'].repository_type" placeholder="git">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="repository_url" class="col-sm-3 control-label">respository url</label>
+                                    <div class="col-sm-9">
+                                        <input type="text" class="form-control" id="repository_url" ng-model="form['npm'].repository_url" placeholder="git+https://github.com/example/my-module.git">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="keywords" class="col-sm-3 control-label">keywords</label>
+                                    <div class="col-sm-9">
+                                        <input type="text" class="form-control" id="keywords" ng-model="form['npm'].keywords" placeholder="my, sweet, module">
+                                    </div>
+                                </div>
+
+                                <h3>scripts</h3>
+                                <div class="form-group">
+                                    <div class="clearfix m-b-5">
+                                        <div class="col-sm-3 font-13">key</div>
+                                        <div class="col-sm-9 font-13">value</div>
+                                    </div>
+                                    <div class="clearfix m-t-10" ng-repeat="item in scriptCommandInputs">
+                                        <div class="col-sm-3">
+                                            <input type="text" class="form-control" ng-model="item.script_key" placeholder="start">
+                                        </div>
+                                        <div class="col-sm-9">
+                                            <div class="input-group">
+                                                <input type="text" class="form-control" ng-model="item.script_value" placeholder="gulp default | electron .">
+                                                <span class="input-group-btn">
+                                                    <button class="btn btn-default" title="Add" ng-click="addNewScriptCommandInputs();" ng-show="$first"><i class="fa fa-plus"></i></button>
+                                                    <button class="btn btn-default" title="Remove" ng-show="!$first" ng-click="removeScriptCommandInputs($index);"><i class="fa fa-times"></i></button>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+                <div ng-show="$root.activeActivityBarMenuItem.packageManager === 'bower'">
+                    <form class="form-horizontal">
+                        <div class="form-group">
+                            <label for="name" class="col-sm-3 control-label">name</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" id="name" ng-model="form['bower'].name" placeholder="my-module">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="version" class="col-sm-3 control-label">version</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" id="version" ng-model="form['bower'].version" placeholder="1.0.0">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="description" class="col-sm-3 control-label">description</label>
+                            <div class="col-sm-9">
+                                <textarea rows="4" cols="8" class="form-control no-resize" id="description" ng-model="form['bower'].description" placeholder="A file module"></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="authors" class="col-sm-3 control-label">authors</label>
+                            <div class="col-sm-9">
+                                <textarea class="form-control no-resize" cols="8" rows="3" id="authors" ng-model="form['bower'].authors" placeholder="Name1 Surname1, Name2 Surname2"></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="license" class="col-sm-3 control-label">license</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" id="license" ng-model="form['bower'].license" placeholder="MIT">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="private" class="col-sm-3 control-label">private</label>
+                            <div class="col-sm-9">
+                                <select id="private" class="form-control" ng-model="form['bower'].private">
+                                    <option value="true">true</option>
+                                    <option value="false" selected>false</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="advanced-options">
+                            <div class="option-header">
+                                <a href="javascript:void(0);">Advanced Options</a>
+                            </div>
+                            <div class="option-content">
+                                <div class="form-group">
+                                    <label for="main" class="col-sm-3 control-label">main</label>
+                                    <div class="col-sm-9">
+                                        <input type="text" class="form-control" id="main" ng-model="form['bower'].main" placeholder="index.js">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="homepage" class="col-sm-3 control-label">homepage</label>
+                                    <div class="col-sm-9">
+                                        <input type="text" class="form-control" id="homepage" ng-model="form['bower'].homepage" placeholder="https://github.com/example">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="keywords" class="col-sm-3 control-label">keywords</label>
+                                    <div class="col-sm-9">
+                                        <input type="text" class="form-control" id="keywords" ng-model="form['bower'].keywords" placeholder="my, sweet, module">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="ignore" class="col-sm-3 control-label">ignore</label>
+                                    <div class="col-sm-9">
+                                        <textarea class="form-control no-resize" cols="8" rows="4" id="ignore" ng-model="form['bower'].ignore" placeholder="**/.*, node_modules, bower_components, test"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-sm btn-success" ng-click="initPackageFile();">Init File</button>
+            </div>
+        </div>
+    </div>
+</div>

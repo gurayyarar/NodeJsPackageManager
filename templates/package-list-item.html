@@ -1,0 +1,27 @@
+<div class="package-list-item" ng-class="{active : $root.activePackageItem === item}" ng-click="$root.selectPackage($event, item);">
+    <span class="package-title" ng-bind="item.name"></span>
+
+    <div class="pull-right">
+        <span class="package-dev" title="devDependency" ng-show="item.isDevDependencies">dev</span>
+        <span class="package-version" ng-bind="'v' + item.version" ng-show="item.version"></span>
+    </div>
+    <div class="controls m-t-10" data-package="{{item.name}}">
+        <div class="btn-group" ng-show="$root.packages[item.name].listItemControl.install && $root.activePackageExplorerItem.path != null && $root.activePackageExplorerItem.isExistDevDependencies">
+            <button type="button" class="btn btn-sm btn-success" data-cmd="install" data-loading-text="Installing..." ng-click="$root.packageCommand($event, item.name);">Install</button>
+            <button type="button" class="btn btn-sm btn-success dropdown-toggle" data-cmd="install" data-loading-text="<span class='caret'></span>" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <span class="caret"></span>
+                <span class="sr-only">Toggle Dropdown</span>
+            </button>
+            <ul class="dropdown-menu">
+                <li><a href="javascript:void(0);" data-cmd="installAsDev" ng-click="$root.packageCommand($event, item.name);">Install as devDependency</a></li>
+                <li><a href="javascript:void(0);" data-cmd="install" ng-click="$root.packageCommand($event, item.name);">Install as dependency</a></li>
+            </ul>
+        </div>
+        <button class="btn btn-sm btn-success" ng-show="$root.packages[item.name].listItemControl.install && ($root.activePackageExplorerItem.path == null || !$root.activePackageExplorerItem.isExistDevDependencies)" data-loading-text="Installing..." data-cmd="install" ng-click="$root.packageCommand($event, item.name);">Install</button>
+        <button class="btn btn-sm btn-default" ng-show="$root.packages[item.name].listItemControl.uninstall" data-loading-text="Uninstalling..." data-cmd="uninstall" ng-click="$root.packageCommand($event, item.name);">Uninstall</button>
+        <button class="btn btn-sm btn-success" ng-show="$root.packages[item.name].listItemControl.update" data-loading-text="Updating..." data-cmd="update" ng-click="$root.packageCommand($event, item.name);">Update to v{{$root.packages[item.name].latestVersion}}</button>
+        <button class="btn btn-sm btn-default" ng-show="$root.packages[item.name].listItemControl.reload" data-loading-text="Reloading..." data-cmd="reload" ng-click="$root.packageCommand($event, item.name);">Reload</button>
+
+        <div class="loading" ng-show="$root.packages[item.name].listItemControl.loader"></div>
+    </div>
+</div>

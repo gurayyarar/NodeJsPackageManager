@@ -1,0 +1,19 @@
+.btn {
+    border: none;
+    border-radius: 0;
+}
+
+.btn-group {
+    > .btn {
+        + .dropdown-toggle {
+            padding-left: 3px;
+            padding-right: 3px;
+        }
+    }
+
+    &.open {
+        .dropdown-toggle {
+            box-shadow: none;
+        }
+    }
+}

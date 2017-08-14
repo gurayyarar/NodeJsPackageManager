@@ -1,0 +1,58 @@
+{
+    "name": "nodejs-package-manager",
+    "version": "0.1.0",
+    "description": "npm, bower package manager",
+    "author": "Güray Yarar",
+    "license": "MIT",
+    "scripts": {
+        "start": "gulp default | electron .",
+        "dist": "build"
+    },
+    "dependencies": {
+        "@shagstrom/split-pane": "^0.9.4",
+        "@types/angular": "^1.6.27",
+        "@types/bootstrap": "^3.3.35",
+        "@types/jquery": "^3.2.9",
+        "angular": "^1.6.5",
+        "angular-sanitize": "^1.6.5",
+        "animate.css": "^3.5.2",
+        "bootstrap": "^3.3.7",
+        "bower": "^1.8.0",
+        "compare-versions": "^3.0.1",
+        "font-awesome": "^4.7.0",
+        "get-package-readme": "^1.2.0",
+        "jquery": "^3.2.1",
+        "noty": "^3.1.1",
+        "q": "^1.5.0",
+        "showdown": "^1.7.1",
+        "underscore": "^1.8.3"
+    },
+    "devDependencies": {
+        "electron": "^1.6.11",
+        "electron-builder": "^19.22.1",
+        "gulp": "^3.9.1",
+        "gulp-sass": "^3.1.0"
+    },
+    "build": {
+        "appId": "com.gurayyarar.nodejspackagemanager",
+        "productName": "NodeJs Package Manager",
+        "asar": false,
+        "extraResources": [
+            {
+                "from": "node_modules/bower/lib/node_modules",
+                "to": "app/node_modules/bower/lib/node_modules"
+            }
+        ],
+        "nsis": {
+            "oneClick": true,
+            "createDesktopShortcut": true,
+            "allowElevation": false,
+            "language": "1033"
+        },
+        "win": {
+            "publisherName": "Güray Yarar",
+            "target": "nsis",
+            "icon": "images/app.ico"
+        }
+    }
+}

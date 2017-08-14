@@ -1,0 +1,611 @@
+$activitybar_bg-color: #2F333D;
+$activitybar_icon_color: #ccc;
+$activitybar_icon_hover_color: #999;
+
+$confirm_dialog_color: #fff;
+$confirm_dialog_bg-color: #282C34;
+$confirm_dialog_box_shadow_color: rgba(0,0,0,0.5);
+
+$package_explorer_bg-color: #21252b;
+$package_explorer_header-color: #ccc;
+$package_explorer_header-bg-color: #282C34;
+$package_explorer_header-bottom-border-color: #2f333d;
+$package_explorer_list_item-color: #eee;
+$package_explorer_list_item-bottom-border-color: #2f333d;
+$package_explorer_list_item-hover-bg-color: #282C34;
+$package_explorer_context_menu_icon_color: #ccc;
+$package_explorer_context_menu_icon_hover_color: #eee;
+$package_explorer_empt_list_color: #eee;
+
+$package_list_header-color: #ccc;
+$package_list_header-bg-color: #21252B;
+$package_list_header-bottom-border-color: #2f333d;
+$package_list_content-bg-color: #282C34;
+$package_list_content-color: #eee;
+$package_list_hover_bg-color: #21252b;
+$package_list_search-border-bottom-color: #2f333d;
+$package_list_border-right: #181A1F;
+$package_list_no-result-color: #eee;
+$package_list_version_bg-color: #1b1e23;
+$package_list_version_color: #606675;
+$package_list_dev_bg-color: #14476B;
+$package_list_dev_color: #eee;
+
+$package_detail_header_bg-color: #282c34;
+$package_detail_header_color: #eee;
+$package_detail_header_title_bg-color: transparent;
+$package_detail_header_title_version_bg-color: #1b1e23;
+$package_detail_header_title_version_color: #606675;
+$package_detail_body_bg-color: #282c34;
+$package_detail_navbar_color: #999;
+$package_detail_navbar_bg-color: #21252B;
+$package_detail_navbar_border-bottom-color: #2f333d;
+$package_detail_navbar_item_hover_bg-color: #21252B;
+$package_detail_navbar_item_hover_border-color: transparent;
+$package_detail_navbar_active_bg-color: #2C313A;
+$package_detail_navbar_active_border-color: transparent;
+$package_detail_navbar_active_border-bottom-color: #282C34;
+$package_detail_navbar_active_color: #fff;
+$package_detail_navbar_noinfo_color: #eee;
+$package_detail_readme_color: #ccc;
+$package_detail_readme_link_color: #4080D0;
+$package_detail_readme_pre_color: #eee;
+$package_detail_readme_pre_bg-color: #2f333d;
+$package_detail_dependencies_contributors-color: #eee;
+$package_detail_hr_color: #35383f;
+$package_detail_table_odd_bg-color: #21252b;
+
+$form_control_color: #eee;
+$form_control_bg-color: #1D1F23;
+$form_control_border-color: #1D1F23;
+$form_control_focus_border-color: #14476B;
+$form_control_input-icon: #aaa;
+$form_control_loader_color: #fff;
+
+$footer_bg-color: #21252B;
+$footer_color: #999;
+
+$btn_icon_color: #999;
+$btn_icon_hover-color: #666;
+
+$dropdown_menu_bg-color: #282c34;
+$dropdown_menu_item-color: #eee;
+$dropdown_menu_focus_bg-color: #494d56;
+$dropdown_menu_divider_bg-color: #21252b;
+
+$scroll_to_top_bg-color: #404754;
+$scroll_top_top_color: #eee;
+$scroll_to_top_focus_color: #ccc;
+
+$btn_color: #fff;
+$btn_default_bg-color: #404754;
+$btn_default_hover_color: #fff;
+$btn_default_hover_bg-color: #4d5565;
+$btn_default_enabled_bg-color: #404754;
+$btn_success_bg-color: #327E36;
+$btn_success_hover_color: #fff;
+$btn_success_enabled_bg-color: #28632B;
+$btn_danger_bg-color: #A10100;
+$btn_danger_hover_color: #fff;
+$btn_danger_enabled_bg-color: #7C0000;
+
+$scrollbar_bg-color: #3b414d;
+
+$loading_border-color: #fff;
+$loading_top-color: #fff;
+$loader_bg-color: #000;
+$loader_color: #ccc;
+
+$overlay_bg-color: #282c34;
+$overlay_color: #eee;
+
+$modal_content_bg-color: #282c34;
+$modal_content_color: #eee;
+$modal_header_border-bottom: #38393c;
+$modal_close-btn-color: #e9e9e9;
+$modal_footer-bg-color: #000;
+$modal_option-header-color: #eee;
+
+$navtabs_bg-color: #1e2127;
+$navtabs_color: #eee;
+$navtabs_border_bottom_color: #1e2127;
+
+$settings_theme_selected_border_color: #7C0000;
+$settings_theme_label_color: #eee;
+$settings_about_description_color: #ccc;
+$settings_about_donations_border_top_color: #333840;
+$settings_about_links_color: #4080D0;
+$settings_about_h1_sup_color: #888;
+
+.dark-theme {
+    activity-bar {
+        background-color: $activitybar_bg-color;
+
+        .activity-bar-list {
+            .settings-list-item {
+                > a {
+                    color: $activitybar_icon_color;
+
+                    &:focus,
+                    &:active,
+                    &:hover {
+                        color: $activitybar_icon_hover_color;
+                    }
+                }
+            }
+        }
+    }
+
+    .nav-tabs {
+        border-color: $navtabs_border_bottom_color;
+        > li {
+            &.active {
+                > a {
+                    background-color: $navtabs_bg-color;
+                    color: $navtabs_color;
+                }
+            }
+        }
+
+        > li {
+            >a {
+                color: $navtabs_color;
+
+                &:hover,
+                &:active {
+                    background-color: $navtabs_bg-color;
+                }
+            }
+        }
+    }
+
+    #settingsModal {
+        .tab-content {
+            .theme-list {
+                > li {    
+                    > a {
+                        > img {
+                            border: 3px solid transparent;
+                        }
+
+                        > label {
+                            color: $settings_theme_label_color;
+                        }
+                    }
+
+                    &.active {
+                        > a {
+                            > img {
+                                border: 3px solid $settings_theme_selected_border_color;
+                            }
+                        }
+                    }
+                }
+            }
+
+            .about-panel {
+                h1 {
+                    sup {
+                        color: $settings_about_h1_sup_color;
+                    }
+                }
+                .description {
+                    color: $settings_about_description_color;
+                }
+
+                .donations {
+                    border-top: 1px solid $settings_about_donations_border_top_color;
+                }
+
+                a:not(.btn) {
+                    color: $settings_about_links_color;
+                }
+            }
+        }
+    }
+
+    ::-webkit-scrollbar-thumb {
+        background-color: rgba($scrollbar_bg-color, 0.75);
+
+        &:hover {
+            background-color: rgba($scrollbar_bg-color, 0.95);
+        }
+    }
+
+    .loading {
+        border-color: rgba($loading_border-color,0.2);
+        border-top-color: $loading_top-color;
+    }
+
+    .noty_bar {
+        background-color: $confirm_dialog_bg-color;
+        color: $confirm_dialog_color;
+        box-shadow: 0 5px 15px $confirm_dialog_box_shadow_color;
+    }
+
+    .package-explorer-container {
+        background-color: $package_explorer_bg-color;
+
+        .empty-list {
+            color: $package_explorer_empt_list_color;
+        }
+
+        .header {
+            color: $package_explorer_header-color;
+            background-color: $package_explorer_header-bg-color;
+            border-bottom: 1px solid $package_explorer_header-bottom-border-color;
+        }
+
+        package-explorer-list {
+            > ul.package-list {
+               > li {
+                   > a {
+                        color: $package_explorer_list_item-color;
+                        border-bottom: 1px solid $package_explorer_list_item-bottom-border-color;
+
+                        &:hover,
+                        &:active,
+                        &.active {
+                            background-color: $package_explorer_list_item-hover-bg-color;
+                        }
+                    }
+                }
+            }
+
+            .context-menu-holder {
+                .list-holder {
+                    > ul {
+                        > li {
+                            > a {
+                                color: $package_explorer_context_menu_icon_color;
+
+                                &:hover,
+                                &:active,
+                                &:focus {
+                                    color: $package_explorer_context_menu_icon_hover_color;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .packages {
+        .title {
+            background-color: $package_list_header-bg-color;
+            color: $package_list_header-color;
+            border-bottom: 1px solid $package_list_header-bottom-border-color;
+        }
+
+        .content {
+            package-list {
+                border-top: 1px solid $package_list_search-border-bottom-color;
+
+                .search-no-result {
+                    color: $package_list_no-result-color;
+                }
+
+                .package-list {
+                    li {
+                        border-bottom: 1px solid $package_list_header-bottom-border-color;
+
+                        .package-list-item {
+                            color: $package_list_content-color;
+
+                            &:hover,
+                            &:active,
+                            &.active {
+                                background-color: $package_list_hover_bg-color;
+                            }
+                        }
+                    }
+                }
+            }
+
+            .content-split-pane {
+                .split-pane-component {
+                    &:first-child {
+                        border-right: 2px solid $package_list_border-right;
+                        background-color: $package_list_content-bg-color;
+                    }
+                }
+            }
+
+            .package-list {
+                li {
+                    .package-list-item {
+                        color: $package_list_content-color;
+
+                        &:hover,
+                        &:active {
+                            background-color: $package_list_hover_bg-color !important;
+                        }
+
+                        .package-version {
+                            background-color: $package_list_version_bg-color;
+                            color: $package_list_version_color;
+                        }
+
+                        .package-dev {
+                            color: $package_list_dev_color;
+                            background-color: $package_list_dev_bg-color;
+                        }
+
+                        &.active {
+                            background-color: $package_list_hover_bg-color !important;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .package-detail-container {
+        .header {
+            background-color: $package_detail_header_bg-color;
+            color: $package_detail_header_color;
+
+            .title {
+                background-color: $package_detail_header_title_bg-color;
+
+                span {
+                    &:last-child {
+                        background-color: $package_detail_header_title_version_bg-color;
+                        color: $package_detail_header_title_version_color;
+                    }
+                }
+            }
+        }
+
+        .body {
+            .nav-tabs {
+                background-color: $package_detail_navbar_bg-color;
+                border-bottom-color: $package_detail_navbar_border-bottom-color;
+
+                li {
+                    a {
+                        color: $package_detail_navbar_color;
+                        border-bottom-color: $package_detail_navbar_border-bottom-color;
+
+                        &:hover {
+                            background-color: $package_detail_navbar_item_hover_bg-color;
+                            border-color: $package_detail_navbar_item_hover_border-color;
+                            border-bottom-color: $package_detail_navbar_border-bottom-color;
+                        }
+                    }
+
+                    &.active {
+                        a {
+                            background-color: $package_detail_navbar_active_bg-color;
+                            border-color: $package_detail_navbar_active_border-color;
+                            border-bottom-color: $package_detail_navbar_active_border-bottom-color;
+                            color: $package_detail_navbar_active_color;
+                        }
+                    }
+                }
+            }
+
+            .package-detail-info-container {
+                background-color: $package_detail_body_bg-color;
+
+                .read-me-container {
+                    color: $package_detail_readme_color;
+
+                    a {
+                        color: $package_detail_readme_link_color;
+                    }
+
+                    pre, code {
+                        background-color: $package_detail_readme_pre_bg-color;
+                        color: $package_detail_readme_pre_color;
+                    }
+
+                    hr {
+                        border-top-color: $package_detail_hr_color !important;
+                    }
+                }
+
+                .no-info {
+                    color: $package_detail_navbar_noinfo_color;
+                }
+
+                .table-striped {
+                    > tbody {
+                        tr {
+                            &:nth-of-type(odd) {
+                                background-color: $package_detail_table_odd_bg-color !important;
+                            }
+                        }
+                    }
+                }
+
+                #dependencies,
+                #contributors {
+                    color: $package_detail_dependencies_contributors-color;
+                }
+            }
+        }
+    }
+
+    .package-detail-pane {
+        background-color: $package_detail_body_bg-color;
+    }
+
+    .clearable-input {
+        .fa {
+            color: $form_control_input-icon;
+        }
+    }
+
+    .modal-content {
+        background-color: $modal_content_bg-color;
+        color: $modal_content_color;
+
+        .modal-header {
+            border-bottom: 1px solid $modal_header_border-bottom;
+
+            .close {
+                color: $modal_close-btn-color;
+            }
+        }
+
+        .modal-body {
+            .advanced-options {
+                .option-header {
+                    a {
+                        color: $modal_option-header-color;
+                    }
+                }
+            }
+        }
+
+        .modal-footer {
+            background-color: rgba($modal_footer-bg-color,0.25);
+        }
+    }
+
+    .package-overlay,
+    .package-detail-overlay {
+        background-color: $overlay_bg-color !important;
+        color: $overlay_color !important;
+    }
+
+    .form-control {
+        background-color: $form_control_bg-color;
+        border-color: $form_control_border-color;
+        color: $form_control_color;
+
+        &:focus {
+            border-color: $form_control_focus_border-color;
+        }
+    }
+
+    .btn-icon {
+        color: $btn_icon_color;
+
+        &:hover,
+        &:active {
+            color: $btn_icon_hover-color !important;
+        }
+    }
+
+    .btn {
+        color: $btn_color;
+
+        &.btn-default {
+            background-color: $btn_default_bg-color;
+
+            &:hover,
+            &:active,
+            &:focus {
+                color: $btn_default_hover_color;
+                background-color: $btn_default_hover_bg-color !important;
+
+                &:enabled {
+                    background-color: $btn_default_enabled_bg-color;
+                }
+
+                &:disabled {
+                    background-color: $btn_default_bg-color;
+                }
+            }
+        }
+
+        &.btn-success {
+            background-color: $btn_success_bg-color;
+
+            &:hover,
+            &:active,
+            &:focus {
+                color: $btn_success_hover_color;
+
+                &:enabled {
+                    background-color: $btn_success_enabled_bg-color !important;
+                }
+
+                &:disabled {
+                    background-color: $btn_success_bg-color;
+                }
+            }
+        }
+
+        &.btn-danger {
+            background-color: $btn_danger_bg-color;
+
+            &:hover,
+            &:active,
+            &:focus {
+                color: $btn_danger_hover_color;
+
+                &:enabled {
+                    background-color: $btn_danger_enabled_bg-color !important;
+                }
+
+                &:disabled {
+                    background-color: $btn_danger_bg-color;
+                }
+            }
+        }
+    }
+
+    .dropdown-menu {
+        background-color: $dropdown_menu_bg-color;
+
+        > li {
+            > a {
+                color: $dropdown_menu_item-color;
+
+                &:hover,
+                &:focus,
+                &:active {
+                    color: $dropdown_menu_item-color;
+                    background-color: $dropdown_menu_focus_bg-color;
+                }
+            }
+        }
+
+        .divider {
+            background-color: $dropdown_menu_divider_bg-color;
+        }
+    }
+
+    .scroll-to-top {
+        background-color: $scroll_to_top_bg-color;
+        color: $scroll_top_top_color;
+
+        &:hover,
+        &:active,
+        &:focus {
+            color: $scroll_to_top_focus_color;
+        }
+    }
+
+    .has-search-icon {
+        &:after {
+            color: $form_control_input-icon;
+        }
+
+        &.input-loader {
+            &:after {
+                border-color: rgba($form_control_loader_color, 0.2) !important;
+                border-top-color: $form_control_loader_color !important;
+            }
+        }
+    }
+
+    footer {
+        background-color: $footer_bg-color;
+        color: $footer_color;
+    }
+
+    loader {
+        background-color: rgba($loader_bg-color, 0.50);
+
+        .loader {
+            color: $loader_color;
+            background-color: rgba($loader_bg-color,0.40);
+        }
+    }
+}

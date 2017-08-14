@@ -1,0 +1,28 @@
+.modal-content {
+    border-radius: 0;
+
+    .modal-header {
+        padding: 12px 14px;
+
+        .close {
+            text-shadow: none;
+            font-size: 22px;
+            opacity: 0.5;
+
+            &:hover,
+            &:active {
+                opacity: 0.75;
+            }
+        }
+
+        .modal-title {
+            font-size: 14px;
+            font-weight: 600;
+        }
+    }
+
+    .modal-footer {
+        border: none;
+    }
+
+}

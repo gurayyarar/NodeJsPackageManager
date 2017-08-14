@@ -1,0 +1,39 @@
+<div class="package-overlay" ng-hide="$root.hidePackageOverlay"></div>
+
+<div class="packages">
+    <div class="content">
+        <div class="content-split-pane split-pane fixed-left">
+            <div class="split-pane-component" ng-style="$root.contentSplitStyle">
+                <div class="title">
+                    PACKAGES
+                    <div class="pull-right">
+                        <div class="btn-group">
+                            <button type="button" class="btn-icon dropdown-toggle" data-toggle="dropdown" title="Filter"><i class="fa fa-filter"></i></button>
+                            <ul class="dropdown-menu pull-right">
+                                <li><a href="javascript:void(0);" ng-click="makeFilter('@installed');">Show Installed Packages</a></li>
+                                <li><a href="javascript:void(0);" ng-click="makeFilter('@update');">Show Update Available Packages</a></li>
+                                <li class="divider"></li>
+                                <li><a href="javascript:void(0);" ng-click="makeFilter('@dependencies');">Show Only Dependencies</a></li>
+                                <li><a href="javascript:void(0);" ng-click="makeFilter('@devdependencies');">Show Only DevDependencies</a></li>
+                            </ul>
+                        </div>
+                        <button type="button" class="btn-icon btn-refresh" ng-click="$root.reloadPackageList();" title="Reload"><i class="fa fa-refresh"></i></button>
+                    </div>
+                </div>
+                <div class="padding-10">
+                    <div class="clearable-input has-search-icon" ng-class="{'input-loader': $root.showInputLoader === true}">
+                        <input type="text" class="form-control js-package-search" placeholder="Search..." ng-model="$root.searchVal" ng-model-options='{ debounce: 750 }'
+                        />
+                        <i class="fa fa-times" ng-click="clearSearch();" ng-show="$root.searchVal"></i>
+                    </div>
+                </div>
+                <package-list></package-list>
+            </div>
+            <div class="split-pane-divider" ng-style="$root.contentDividerAndRightSideStyle"></div>
+            <div class="split-pane-component package-detail-pane" ng-style="$root.contentDividerAndRightSideStyle">
+                <div class="package-detail-overlay" ng-hide="$root.hidePackageDetailOverlay"></div>
+                <package-detail></package-detail>
+            </div>
+        </div>
+    </div>
+</div>

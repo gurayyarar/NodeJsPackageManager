@@ -1,0 +1,114 @@
+@import '_mixins';
+
+.package-explorer-container {
+    height: 100%;
+
+    .header {
+        font-size: 13px;
+        height: 36px;
+        line-height: 36px;
+        padding-left: 10px;
+        padding-right: 10px;
+        position: relative;
+        // @include three-dots-overflow();
+    }
+
+    .empty-list {
+        font-size: 13px;
+        text-align: center;
+        margin-top: 12px;
+    }
+
+    package-explorer-list {
+        position: relative;
+
+        > ul {
+            &.package-list {
+                margin: 0;
+                padding: 0;
+                list-style: none;
+
+                > li {
+                    position: relative;
+
+                    > a {
+                        display: block;
+                        padding: 10px;
+                        font-size: 12px;
+                        text-decoration: none;
+                        word-break: break-all;
+                    }
+
+                    &:hover {
+                        .context-menu-holder {
+                            display: block;
+                        }
+                    }
+                }
+            }
+        }
+
+        .context-menu-holder {
+            display: none;
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            height: 100%;
+            background-color: #2f333d;
+
+            .list-holder {
+                position: relative;
+                top: 50%;
+                transform: translateY(-50%);
+                padding-right: 12px;
+                padding-left: 10px;
+
+                > ul {
+                    margin: 0;
+                    padding: 0;
+    
+                    > li {
+                        list-style: none;
+                        display: inline-block;
+                        
+                        > a {
+                            font-size: 14px;
+                            padding: 0 3px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    ul {
+        &.package-list {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+
+            li {
+                div {
+                    &.package-list-item {
+                        display: block;
+                        padding: 10px;
+                        font-size: 12px;
+                        text-decoration: none;
+                        word-break: break-all;
+                    }
+                }
+            }
+        }
+    }
+
+    .btn-icon {
+        background: transparent;
+        border: none;
+        font-size: 14px;
+        padding: 0 5px;
+        margin-right: -5px;
+        position: relative;
+        top: -1px;
+    }
+}

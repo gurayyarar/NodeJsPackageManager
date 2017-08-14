@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="app" ng-controller="MainController">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- <base href="/"> -->
+    <title>NodeJs Package Manager</title>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700&amp;subset=cyrillic" rel="stylesheet">
+    <link rel="stylesheet" href="node_modules/@shagstrom/split-pane/split-pane.css" />
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="node_modules/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="node_modules/noty/lib/noty.css">
+    <link rel="stylesheet" href="node_modules/animate.css/animate.min.css">
+
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+
+<body>
+    <loader ng-show="$root.showLoader"></loader>
+    <div class="workbench-container">
+        <activity-bar></activity-bar>
+        <div class="main-split-pane split-pane fixed-left">
+            <div class="split-pane-component" ng-style="$root.packageExplorerStyle">
+                <package-explorer></package-explorer>
+            </div>
+            <div class="split-pane-divider" ng-style="packageExplorerDividerAndRightSideStyle"></div>
+            <div class="split-pane-component" ng-style="packageExplorerDividerAndRightSideStyle">
+                <packages></packages>
+            </div>
+        </div>
+    </div>
+    <footer></footer>
+    <package-init></package-init>
+    <settings></settings>
+
+    <script>
+        require('./js/app.js');
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,88 @@
+<div class="package-detail-container">
+    <div class="header">
+        <div class="title"><span ng-bind="packageInfo.name"></span> <span ng-bind="packageInfo.version"></span></div>
+        <span class="author" ng-bind="packageInfo.author"></span> <span ng-show="packageInfo.author != null && packageInfo.license != null">|</span>
+        <span class="licence" ng-show="packageInfo.license != undefined" ng-bind="packageInfo.license + ' License'"></span>
+        <div class="description" ng-bind="packageInfo.description"></div>
+        <div class="setup-container" data-package="{{packageInfo.name}}">
+            <select class="form-control" ng-model="$root.packages[packageInfo.name].selectedVersion" ng-change="onVersionChanged();">
+                <option value="{{item}}" ng-bind="item" ng-repeat="item in packageInfo.versions track by $index"></option>
+            </select>
+            <div class="btn-group" ng-show="$root.packages[packageInfo.name].detailControl.install && $root.activePackageExplorerItem.path != null && $root.activePackageExplorerItem.isExistDevDependencies">
+                <button type="button" class="btn btn-sm btn-success" data-cmd="install" data-loading-text="Installing..." ng-click="$root.packageCommand($event, packageInfo.name, $root.packages[packageInfo.name].selectedVersion);">Install</button>
+                <button type="button" class="btn btn-sm btn-success dropdown-toggle" data-cmd="install" data-loading-text="<span class='caret'></span>"
+                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <span class="caret"></span>
+                    <span class="sr-only">Toggle Dropdown</span>
+                </button>
+                <ul class="dropdown-menu">
+                    <li><a href="javascript:void(0);" data-cmd="installAsDev" ng-click="$root.packageCommand($event, packageInfo.name, $root.packages[packageInfo.name].selectedVersion);">Install as devDependency</a></li>
+                    <li><a href="javascript:void(0);" data-cmd="install" ng-click="$root.packageCommand($event, packageInfo.name, $root.packages[packageInfo.name].selectedVersion);">Install as dependency</a></li>
+                </ul>
+            </div>
+            <button class="btn btn-sm btn-success" ng-show="$root.packages[packageInfo.name].detailControl.install && ($root.activePackageExplorerItem.path == null || !$root.activePackageExplorerItem.isExistDevDependencies)"
+                data-loading-text="Installing..." data-cmd="install" ng-click="$root.packageCommand($event, packageInfo.name,$root.packages[packageInfo.name].selectedVersion);">Install</button>
+            <button class="btn btn-sm btn-default" ng-show="$root.packages[packageInfo.name].detailControl.uninstall" data-cmd="uninstall"
+                data-loading-text="Uninstalling..." ng-click="$root.packageCommand($event, packageInfo.name);">Uninstall</button>
+            <button class="btn btn-sm btn-success" ng-show="$root.packages[packageInfo.name].detailControl.update" data-cmd="update"
+                data-loading-text="Updating..." ng-click="$root.packageCommand($event, packageInfo.name, $root.packages[packageInfo.name].selectedVersion);">Update to v{{$root.packages[packageInfo.name].selectedVersion}}</button>
+            <button class="btn btn-sm btn-default" ng-show="$root.packages[packageInfo.name].detailControl.downgrade" data-cmd="downgrade"
+                data-loading-text="Downgrading..." ng-click="$root.packageCommand($event, packageInfo.name, $root.packages[packageInfo.name].selectedVersion);">Downgrade to v{{$root.packages[packageInfo.name].selectedVersion}}</button>
+            <button class="btn btn-sm btn-default" ng-show="$root.packages[packageInfo.name].detailControl.reload" data-cmd="reload"
+                data-loading-text="Reloading..." ng-click="$root.packageCommand($event, packageInfo.name);">Reload</button>
+        </div>
+    </div>
+    <div class="body">
+        <div class="package-detail-info-container">
+            <ul class="nav nav-tabs" role="tablist">
+                <li role="presentation" class="active"><a href="#details" data-toggle="tab">Details</a></li>
+                <li role="presentation"><a href="#contributors" data-toggle="tab">Contributors</a></li>
+                <li role="presentation"><a href="#dependencies" data-toggle="tab">Dependencies</a></li>
+            </ul>
+            <div class="tab-content">
+                <div role="tabpanel" class="tab-pane fade in active" id="details">
+                    <div class="no-info" ng-show="packageInfo.readMe == '__empty__'">No Details</div>
+                    <div class="read-me-container" ng-bind-html="packageInfo.readMe" ng-hide="packageInfo.readMe == '__empty__'"></div>
+                </div>
+                <div role="tabpanel" class="tab-pane fade" id="contributors">
+                    <div class="no-info" ng-show="packageInfo.contributors == null">No Contributors</div>
+                    <div ng-hide="packageInfo.contributors == null">
+                        <table class="table table-striped">
+                            <tbody>
+                                <tr ng-repeat="item in packageInfo.contributors">
+                                    <td ng-bind="item"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div role="tabpanel" class="tab-pane fade" id="dependencies">
+                    <div class="no-info" ng-show="packageInfo.dependencies == null && packageInfo.devDependencies == null">No Dependencies</div>
+                    <div ng-hide="packageInfo.dependencies == null" class="m-b-30">
+                        <h1>Dependencies</h1>
+                        <table class="table table-striped">
+                            <tbody>
+                                <tr ng-repeat="(key, value) in packageInfo.dependencies">
+                                    <td ng-bind="key" width="400"></td>
+                                    <td ng-bind="value"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div ng-hide="packageInfo.devDependencies == null">
+                        <h1>Dev Dependencies</h1>
+                        <table class="table table-striped">
+                            <tbody>
+                                <tr ng-repeat="(key, value) in packageInfo.devDependencies">
+                                    <td ng-bind="key" width="400"></td>
+                                    <td ng-bind="value"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

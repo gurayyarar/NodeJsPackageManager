@@ -1,0 +1,36 @@
+<div class="header">
+    <span ng-bind="item.title"></span>
+    <div class="pull-right">
+        <div class="btn-group">
+            <button type="button" class="btn-icon dropdown-toggle" data-toggle="dropdown"><i class="fa fa-ellipsis-v"></i></button>
+            <ul class="dropdown-menu pull-right">
+                <li><a href="javascript:void(0);" ng-click="openFile();">Open File</a></li>
+                <li><a href="javascript:void(0);" ng-click="initFile();">Init File</a></li>
+                <li class="divider"></li>
+                <li><a href="javascript:void(0);" ng-click="clearList();">Clear All List</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div class="empty-list" ng-show="$root.packagePathList[item.packageManager].length === 0">-- No Package File --</div>
+<ul class="package-list">
+    <li ng-repeat="item in $root.packagePathList[item.packageManager]">
+        <a href="javascript:void(0);" title="{{item.caption}}" ng-bind="item.caption" ng-class="{active : $root.activePackageExplorerItem === item}"
+            ng-click="selectPackageExplorerItem(item);">           
+        </a>
+        <div class="context-menu-holder" ng-show="item.canDelete">
+            <div class="list-holder">
+                <ul>
+                    <li>
+                        <a href="javascript:void(0);" title="Remove From List" ng-click="removeFromList(item.path);"><i class="glyphicon glyphicon-trash"></i></a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0);" title="Reveal In Explorer" ng-click="revealInExplorer(item.path);"><i class="glyphicon glyphicon-folder-open"></i></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+    </li>
+</ul>

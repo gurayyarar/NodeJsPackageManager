@@ -1,0 +1,17 @@
+.nav-tabs {
+
+    >li {
+        > a {
+            border-radius: 0;
+            border: none !important;
+            font-size: 13px;
+            font-weight: 600;
+        }
+    }
+}
+
+.tab-content {
+    > .tab-pane {
+        padding: 10px 12px;
+    }
+}

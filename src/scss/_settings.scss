@@ -1,0 +1,71 @@
+#settingsModal {
+    .tab-content {
+        .theme-list {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+
+            > li {
+                display: inline-block;
+
+                &:first-child {
+                    margin-right: 15px;
+                }
+
+                > a {
+                    text-decoration: none;
+                    font-size: 13px;
+
+                    > label {
+                        display: block;
+                        font-weight: normal;
+                        margin-top: 10px;
+                        cursor: pointer;
+                    }
+                }
+            }
+        }
+
+        .about-panel {
+            img {
+               max-width: 128px;
+            }
+
+            h1 {
+                font-size: 19px;
+                text-align: center;
+
+                sup {
+                    font-size: 11px;
+                    font-weight: bold;
+                }
+            }
+
+            .description {
+                font-size: 13px;
+                text-align: center;
+            }
+
+            .author-name {
+                margin-top: 25px;
+                font-size: 13px;
+
+                a {
+                    font-weight: bold;
+                }
+            }
+
+            .project-links {
+                margin-top: 7px;
+                margin-bottom: 5px;
+
+                a:not(.btn) {
+                    display: table;
+                    font-weight: bold;
+                    font-size: 13px;
+                    line-height: 21px;
+                }
+            }
+        }
+    }
+}

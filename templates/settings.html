@@ -1,0 +1,60 @@
+<div class="modal fade" id="settingsModal" tabindex="-1" role="dialog" aria-labelledby="settingsModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-body padding-0">
+                <div>
+                    <ul class="nav nav-tabs" role="tablist">
+                        <li role="presentation" class="active"><a href="#theme" aria-controls="theme" role="tab" data-toggle="tab">Themes</a></li>
+                        <li role="presentation"><a href="#restore_default" aria-controls="restore_default" role="tab" data-toggle="tab">Restore To Defaults</a></li>
+                        <li role="presentation"><a href="#about" aria-controls="about" role="tab" data-toggle="tab">About</a></li>
+                    </ul>
+                    <div class="tab-content">
+                        <div role="tabpanel" class="tab-pane fade in active" id="theme">
+                            <div class="align-center m-t-25 m-b-20">
+                                <ul class="theme-list">
+                                    <li ng-repeat="item in themes" ng-click="changeTheme(item);" ng-class="{active: selectedTheme === item}">
+                                        <a href="javascript:void(0);">
+                                            <img ng-src="./images/themes/{{item.image}}" width="240">
+                                            <label ng-bind="item.name"></label>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div role="tabpanel" class="tab-pane fade" id="restore_default">
+                            <div class="align-center m-t-15">
+                                <p class="font-bold">Are you sure want to restore to default settings?</p>
+                                <p class="font-12 m-t--10">(Your package files does not effect this process)</p>
+                                <p class="m-t-20 m-b-15">
+                                    <button type="button" class="btn btn-sm btn-danger" ng-click="restoreToDefaults();">Restore To Defaults</button>
+                                </p>
+                            </div>
+                        </div>
+                        <div role="tabpanel" class="tab-pane fade" id="about">
+                            <div class="about-panel">
+                                <div class="align-center m-t-15">
+                                    <img src="./images/app.png" alt="NodeJs Package Manager">
+                                </div>
+                                <h1>NodeJs Package Manager <sup>v0.1</sup></h1>
+                                <div class="description">npm, bower package manager</div>
+                                <div class="author-name">
+                                    Powered by <a href="https://github.com/gurayyarar">Güray Yarar (gurayyarar)</a>
+                                </div>
+                                <div class="project-links">
+                                    <a href="https://github.com/gurayyarar/NodeJsPackageManager">Project GitHub Page</a>
+                                    <a href="https://github.com/gurayyarar/NodeJsPackageManager/blob/master/LICENSE.md">MIT License</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <div class="pull-left">
+                    <a href="http://bit.ly/2wGb62y" class="btn btn-sm btn-default js-donation-btn" ng-show="showDonationBtn" title="You can donate with buy premium template">Donations are greatly appreciated!</a>
+                </div>
+                <button type="button" class="btn btn-sm btn-success" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>

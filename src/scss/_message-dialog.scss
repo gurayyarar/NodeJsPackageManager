@@ -1,0 +1,29 @@
+.noty_bar {
+    border: none !important;
+    border-radius: 0 !important;
+    font-size: 13px;
+    text-align: center;
+
+    .noty_body {
+        font-size: 13px !important;
+        padding: 13px !important;
+    }
+
+    &.noty_has_progressbar {
+        .noty_progressbar {
+            background-color: #000 !important;
+        }
+    }
+
+    &.noty_type__error {
+        background-color: #660000;
+    }
+
+    &.noty_type__success {
+        background-color: #327E36;
+    }
+}
+
+#noty_layout__topCenter {
+    top: 10px !important;
+}

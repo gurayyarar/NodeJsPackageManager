@@ -1,0 +1,12 @@
+<ul class="activity-bar-list">
+    <li ng-repeat="item in $root.activityBarIcons">
+        <a href="javascript:void(0);" title="{{item.title}}" ng-class="{active : $root.activeActivityBarMenuItem === item}" ng-click="$root.startPackageExplorerWith(item);">
+            <img ng-src="images/activity-bar-icons/{{item.packageManager}}.svg">
+        </a>
+    </li>
+    <li class="settings-list-item">
+        <a href="javascript:void(0);" ng-click="showSettingsDialog();" title="Settings">
+            <i class="glyphicon glyphicon-cog"></i>
+        </a>
+    </li>
+</ul>
