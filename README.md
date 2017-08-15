@@ -6,6 +6,8 @@ NodeJs Package Manager
 It's really easy to check the version of packages, upgrade or downgrade which you specified of version only with your one click. 
 You can access all **README.md** files, **Contributors**, **Dependencies** and **DevDependencies** of package based on their versions.
 
+<br>
+
 Screenshot
 ----------
 ![NodeJs Package Manager](https://raw.githubusercontent.com/gurayyarar/NodeJsPackageManager/master/images/documentation/readme-main.gif)
