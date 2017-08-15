@@ -15,34 +15,36 @@ Screenshot
 You can
 ----------
 
- - Show your **Global Packages** installed on your computer
- - Import **npm(packages.json)** & **bower(bower.json)** files and show packages inside of these
- - Search **npm&bower** packages
- - **Create (Init)** new **npm&bower json** file with easy fillable form elements
- - Access **README** files, **Contributors**, **Dependencies** and **DevDependencies** of package based on their version
- - Check if **exist any updates** of installed packages
- - **Install** to new package
- - **Uninstall** the already installed package
- - **Update** to last or specified version
- - **Downgrade** to specified version
+ - [Show your **Global Packages** installed on your computer](https://github.com/gurayyarar/NodeJsPackageManager/wiki/Global-Packages)
+ - [Import **npm(packages.json)** & **bower(bower.json)** files and show packages inside of these](https://github.com/gurayyarar/NodeJsPackageManager/wiki/Open-Packages)
+ - [Search **npm&bower** packages](https://github.com/gurayyarar/NodeJsPackageManager/wiki/Search-Mechanism)
+ - [**Create (Init)** new **npm&bower json** file with easy fillable form elements](https://github.com/gurayyarar/NodeJsPackageManager/wiki/Init-npm&bower-Json-File)
+ - [Access **README** files, **Contributors**, **Dependencies** and **DevDependencies** of package based on their version](https://github.com/gurayyarar/NodeJsPackageManager/wiki/Get-Package-Detail-According-To-Version)
+ - [Check if **exist any updates** of installed packages](https://github.com/gurayyarar/NodeJsPackageManager/wiki/Updates-of-Packages)
+ - [**Install** to new package](https://github.com/gurayyarar/NodeJsPackageManager/wiki/Installation)
+ - [**Uninstall** the already installed package](https://github.com/gurayyarar/NodeJsPackageManager/wiki/Uninstall-The-Package)
+ - [**Update** to last or specified version](https://github.com/gurayyarar/NodeJsPackageManager/wiki/Updates-of-Packages)
+ - [**Downgrade** to specified version](https://github.com/gurayyarar/NodeJsPackageManager/wiki/Downgrade-Package-Version)
  
 
 Installation
 ----------
 **Executable Files**
-For now, only available on Windows Operation System
-Coming soon the Linux and MacOS versions
+
+You can access the all version from [this link](https://github.com/gurayyarar/NodeJsPackageManager/releases)
+
+**Note**
+
+For now, only available on Windows Operation System.
+
+*Coming soon the Linux and MacOS versions*
+
 
 **GitHub - For Developers**
-- Fork the repository ([here is the guide](https://help.github.com/articles/fork-a-repo/)).
-- Clone to your machine
-```
-git clone https://github.com/gurayyarar/NodeJsPackageManager.git
-```
-and then
-```
-npm install
-```
+
+[Please follow these instructions](https://github.com/gurayyarar/NodeJsPackageManager/wiki/Installation---For-Developers)
+
+
 Documentation
 ----------
 You can visit the [WIKI page.](https://github.com/gurayyarar/NodeJsPackageManager/wiki)
@@ -55,7 +57,7 @@ Theme Options
 
 Change Logs
 ----------
-When the release version published, the link will specify here.
+You can check logs from [this link](https://github.com/gurayyarar/NodeJsPackageManager/wiki/Changelogs)
 
 License
 ----------
