@@ -18,9 +18,9 @@ You can
  - Show your **Global Packages** installed on your computer
  - Import **npm(packages.json)** & **bower(bower.json)** files and show packages inside of these
  - Search **npm&bower** packages
- - Create (Init) new **npm&bower json** file with easy fillable form elements
+ - **Create (Init)** new **npm&bower json** file with easy fillable form elements
  - Access **README** files, **Contributors**, **Dependencies** and **DevDependencies** of package based on their version
- - Check if exist any updates of installed packages
+ - Check if **exist any updates** of installed packages
  - **Install** to new package
  - **Uninstall** the already installed package
  - **Update** to last or specified version
