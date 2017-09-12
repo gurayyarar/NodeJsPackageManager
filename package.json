@@ -6,7 +6,8 @@
     "license": "MIT",
     "scripts": {
         "start": "gulp default | electron .",
-        "dist": "build"
+        "dist": "build",
+        "test": "echo \"Error: no test specified\" && exit 1"
     },
     "dependencies": {
         "@shagstrom/split-pane": "^0.9.4",
