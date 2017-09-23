@@ -2,8 +2,8 @@ NodeJs Package Manager
 ----------
 <img src="https://raw.githubusercontent.com/gurayyarar/NodeJsPackageManager/master/images/app.png" width="128" align="left"/>
 
-**NodeJs Package Manager is organizer of your npm&bower packages.** So we can call **npm package manager** and **bower package manager** 
-It's really easy to check the version of packages, upgrade or downgrade which you specified of version only with your one click. 
+**NodeJs Package Manager is an organizer for your npm and Bower packages.** So we can call **npm package manager** and **bower package manager** 
+It's really easy to check, upgrade or downgrade packages, originally specified during in the one click.
 You can access all **README.md** files, **Contributors**, **Dependencies** and **DevDependencies** of package based on their versions.
 
 <br>
@@ -15,14 +15,14 @@ Screenshot
 You can
 ----------
 
- - [Show your **Global Packages** installed on your computer](https://github.com/gurayyarar/NodeJsPackageManager/wiki/Global-Packages)
- - [Import **npm(packages.json)** & **bower(bower.json)** files and show packages inside of these](https://github.com/gurayyarar/NodeJsPackageManager/wiki/Open-Packages)
- - [Search **npm&bower** packages](https://github.com/gurayyarar/NodeJsPackageManager/wiki/Search-Mechanism)
- - [**Create (Init)** new **npm&bower json** file with easy fillable form elements](https://github.com/gurayyarar/NodeJsPackageManager/wiki/Init-npm&bower-Json-File)
+ - [See all**Global Packages** installed on your computer](https://github.com/gurayyarar/NodeJsPackageManager/wiki/Global-Packages)
+ - [Import **npm(packages.json)** & **Bower(bower.json)** files and see packages inside of them](https://github.com/gurayyarar/NodeJsPackageManager/wiki/Open-Packages)
+ - [Search **npm and Bower** packages](https://github.com/gurayyarar/NodeJsPackageManager/wiki/Search-Mechanism)
+ - [**Create (Init)** new **npm or Bower json** file with an easy-to-fill form](https://github.com/gurayyarar/NodeJsPackageManager/wiki/Init-npm&bower-Json-File)
  - [Access **README** files, **Contributors**, **Dependencies** and **DevDependencies** of package based on their version](https://github.com/gurayyarar/NodeJsPackageManager/wiki/Get-Package-Detail-According-To-Version)
- - [Check if **exist any updates** of installed packages](https://github.com/gurayyarar/NodeJsPackageManager/wiki/Updates-of-Packages)
- - [**Install** to new package](https://github.com/gurayyarar/NodeJsPackageManager/wiki/Installation)
- - [**Uninstall** the already installed package](https://github.com/gurayyarar/NodeJsPackageManager/wiki/Uninstall-The-Package)
+ - [Check if **any updates exist** for installed packages](https://github.com/gurayyarar/NodeJsPackageManager/wiki/Updates-of-Packages)
+ - [**Install** a new package](https://github.com/gurayyarar/NodeJsPackageManager/wiki/Installation)
+ - [**Uninstall** an already installed package](https://github.com/gurayyarar/NodeJsPackageManager/wiki/Uninstall-The-Package)
  - [**Update** to last or specified version](https://github.com/gurayyarar/NodeJsPackageManager/wiki/Updates-of-Packages)
  - [**Downgrade** to specified version](https://github.com/gurayyarar/NodeJsPackageManager/wiki/Downgrade-Package-Version)
  
@@ -31,13 +31,13 @@ Installation
 ----------
 **Executable Files**
 
-You can access the all version from [this link](https://github.com/gurayyarar/NodeJsPackageManager/releases)
+You can access all versions from [this link](https://github.com/gurayyarar/NodeJsPackageManager/releases)
 
 **Note**
 
-For now, only available on Windows Operation System.
+For now, this is only available on Windows Operation System.
 
-*Coming soon the Linux and MacOS versions*
+*Linux and MacOS versions coming soon!*
 
 
 **GitHub - For Developers**
