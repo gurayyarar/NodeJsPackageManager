@@ -67,4 +67,4 @@ Donations
 ----------
 Donations are **greatly appreciated!**
 
-**[DONATE WITH BUY PREMIUM TEMPLATE](http://bit.ly/2wGb62y)**
+**[BUY ME A COFFEE](http://bit.ly/2yEjtx5)**
