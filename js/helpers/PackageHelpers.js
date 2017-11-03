@@ -217,6 +217,7 @@ var PackageHelpers = (function() {
         } else if (pkg.missing) {
             version = '0'; //pkg.required;
         } else {
+            version = '0';
             console.warn(`Unknown format : ${name}`, pkg);
         }
 
