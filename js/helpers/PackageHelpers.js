@@ -227,8 +227,8 @@ var PackageHelpers = (function () {
         }
 
         return version;
-    }
-     PackageHelpers.prototype.getInstalledPackagesFromFile = function (packageManager, filePath, callback) {
+    };
+    PackageHelpers.prototype.getInstalledPackagesFromFile = function (packageManager, filePath, callback) {
         var _this = this;
         if (packageManager === 'npm') {
             if (filePath === null) {
@@ -486,5 +486,3 @@ var PackageHelpers = (function () {
     return PackageHelpers;
 }());
 exports.PackageHelpers = PackageHelpers;
-
-
