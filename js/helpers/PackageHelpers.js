@@ -9,41 +9,40 @@ var mdToHtml = require('showdown');
 var fs = require('fs');
 var q = require('q');
 var _command = '';
-var PackageHelpers = (function () {
+var PackageHelpers = (function() {
     function PackageHelpers(scope) {
         this.scope = scope;
     }
-    PackageHelpers.prototype.resetPackages = function () {
+    PackageHelpers.prototype.resetPackages = function() {
         this.scope.$root.packages = {};
     };
-    PackageHelpers.prototype.install = function (packageNames, isDevDependency, callback) {
+    PackageHelpers.prototype.install = function(packageNames, isDevDependency, callback) {
         var _this = this;
         if (isDevDependency === void 0) { isDevDependency = false; }
         var activeItem = this.scope.$root.activePackageExplorerItem;
         var path = this.scope.$root.activePackageExplorerItem.path;
         new StatusHelpers_1.StatusHelpers().setTextForPackageProcess(packageNames.join(', '), _command, 'start');
         if (activeItem.packageManager === 'npm') {
-            var npmPacksWithVersion = function (packageName) {
+            var npmPacksWithVersion = function(packageName) {
                 var deferred = q.defer();
                 if (packageName !== undefined && packageName.indexOf('||') === -1) {
-                    new NpmService_1.NpmService().getLatestVersion(packageName, function (result) {
+                    new NpmService_1.NpmService().getLatestVersion(packageName, function(result) {
                         deferred.resolve(packageName + "@" + result);
                     });
-                }
-                else {
+                } else {
                     deferred.resolve(packageName.replace('||', '@'));
                 }
                 return deferred.promise;
             };
-            q.all(packageNames.map(npmPacksWithVersion)).done(function (result) {
+            q.all(packageNames.map(npmPacksWithVersion)).done(function(result) {
                 var packs = {
                     packages: result,
                     isDevDependency: isDevDependency,
                     packagePath: path,
                     isGlobal: path === null || path === undefined
                 };
-                new NpmService_1.NpmService().install(packs, function (result) {
-                    packs.packages.forEach(function (val, i) {
+                new NpmService_1.NpmService().install(packs, function(result) {
+                    packs.packages.forEach(function(val, i) {
                         var packName = val.substring(0, val.lastIndexOf('@'));
                         var packVersion = val.substring(val.lastIndexOf('@') + 1, val.length);
                         _this.addToInstalledPackages(packName, packVersion, false, false);
@@ -52,28 +51,26 @@ var PackageHelpers = (function () {
                     setTimeout(callback(result), 250);
                 });
             });
-        }
-        else if (activeItem.packageManager === 'bower') {
-            var bowerPacksWithVersion = function (packageName) {
+        } else if (activeItem.packageManager === 'bower') {
+            var bowerPacksWithVersion = function(packageName) {
                 var deferred = q.defer();
                 if (packageName !== undefined && packageName.indexOf('||') === -1) {
-                    new BowerService_1.BowerService().getLatestVersion(packageName, function (result) {
+                    new BowerService_1.BowerService().getLatestVersion(packageName, function(result) {
                         deferred.resolve(packageName + "#" + result);
                     });
-                }
-                else {
+                } else {
                     deferred.resolve(packageName.replace('||', '#'));
                 }
                 return deferred.promise;
             };
-            q.all(packageNames.map(bowerPacksWithVersion)).done(function (result) {
+            q.all(packageNames.map(bowerPacksWithVersion)).done(function(result) {
                 var packs = {
                     packages: result,
                     isDevDependency: false,
                     packagePath: path
                 };
-                new BowerService_1.BowerService().install(packs, function (result) {
-                    $.each(result, function (key, val) {
+                new BowerService_1.BowerService().install(packs, function(result) {
+                    $.each(result, function(key, val) {
                         new StatusHelpers_1.StatusHelpers().setTextForPackageProcess(packageNames.join(', '), _command, 'end');
                         _this.addToInstalledPackages(key, val.pkgMeta.version, false, false);
                     });
@@ -82,30 +79,29 @@ var PackageHelpers = (function () {
             });
         }
     };
-    PackageHelpers.prototype.uninstall = function (packageNames, forUpgradeOrDowngrade, callback) {
+    PackageHelpers.prototype.uninstall = function(packageNames, forUpgradeOrDowngrade, callback) {
         var _this = this;
         if (forUpgradeOrDowngrade === void 0) { forUpgradeOrDowngrade = false; }
         var activeItem = this.scope.$root.activePackageExplorerItem;
         new StatusHelpers_1.StatusHelpers().setTextForPackageProcess(packageNames.join(', '), _command, 'start');
         var pack = {
-            packages: packageNames.map(function (item) {
+            packages: packageNames.map(function(item) {
                 return item.indexOf('||') !== -1 ? item.split('||')[0] : item;
             }),
             packagePath: activeItem.path,
             isGlobal: activeItem.path === null || activeItem.path === undefined
         };
         if (activeItem.packageManager === 'npm') {
-            new NpmService_1.NpmService().uninstall(pack, function (result) {
-                packageNames.forEach(function (val, i) {
+            new NpmService_1.NpmService().uninstall(pack, function(result) {
+                packageNames.forEach(function(val, i) {
                     _this.removeFromInstalledPackages(val, forUpgradeOrDowngrade);
                 });
                 new StatusHelpers_1.StatusHelpers().setTextForPackageProcess(packageNames.join(', '), _command, 'end');
                 setTimeout(callback(result), 250);
             });
-        }
-        else if (activeItem.packageManager === 'bower') {
-            new BowerService_1.BowerService().uninstall(pack, function (result) {
-                $.each(result, function (key, val) {
+        } else if (activeItem.packageManager === 'bower') {
+            new BowerService_1.BowerService().uninstall(pack, function(result) {
+                $.each(result, function(key, val) {
                     _this.removeFromInstalledPackages(key, forUpgradeOrDowngrade);
                 });
                 new StatusHelpers_1.StatusHelpers().setTextForPackageProcess(packageNames.join(', '), _command, 'end');
@@ -113,21 +109,21 @@ var PackageHelpers = (function () {
             });
         }
     };
-    PackageHelpers.prototype.update = function (packageNames, isDevDependency, callback) {
+    PackageHelpers.prototype.update = function(packageNames, isDevDependency, callback) {
         var _this = this;
         if (isDevDependency === void 0) { isDevDependency = false; }
-        this.uninstall(packageNames, true, function () {
+        this.uninstall(packageNames, true, function() {
             _this.install(packageNames, isDevDependency, callback);
         });
     };
-    PackageHelpers.prototype.downgrade = function (packageNames, isDevDependency, callback) {
+    PackageHelpers.prototype.downgrade = function(packageNames, isDevDependency, callback) {
         var _this = this;
         if (isDevDependency === void 0) { isDevDependency = false; }
-        this.uninstall(packageNames, true, function () {
+        this.uninstall(packageNames, true, function() {
             _this.install(packageNames, isDevDependency, callback);
         });
     };
-    PackageHelpers.prototype.addToInstalledPackages = function (packageName, version, fromInstalledPackage, isDevDependencies) {
+    PackageHelpers.prototype.addToInstalledPackages = function(packageName, version, fromInstalledPackage, isDevDependencies) {
         if (fromInstalledPackage === void 0) { fromInstalledPackage = false; }
         if (isDevDependencies === void 0) { isDevDependencies = false; }
         if (this.scope.$root.packages[packageName] === undefined) {
@@ -155,14 +151,13 @@ var PackageHelpers = (function () {
                 }
             };
             this.scope.$root.packages[packageName] = packInfo;
-        }
-        else {
+        } else {
             this.scope.$root.packages[packageName].alreadyInstalled = true;
             this.scope.$root.packages[packageName].version = version;
             this.scope.$root.packages[packageName].selectedVersion = version;
         }
     };
-    PackageHelpers.prototype.removeFromInstalledPackages = function (packageName, forUpgradeOrDowngrade) {
+    PackageHelpers.prototype.removeFromInstalledPackages = function(packageName, forUpgradeOrDowngrade) {
         if (forUpgradeOrDowngrade === void 0) { forUpgradeOrDowngrade = false; }
         if (packageName.indexOf('||') !== -1)
             packageName = packageName.split('||')[0];
@@ -184,18 +179,18 @@ var PackageHelpers = (function () {
         }
         this.scope.$root.packages[packageName] = packInfo;
     };
-    PackageHelpers.prototype.getAllInstalledPackages = function () {
+    PackageHelpers.prototype.getAllInstalledPackages = function() {
         var allPackages = this.scope.$root.packages;
         var installedPackages = [];
-        $.each(allPackages, function (key, val) {
+        $.each(allPackages, function(key, val) {
             if (val.alreadyInstalled)
                 installedPackages.push(val);
         });
         return _.sortBy(installedPackages, 'name');
     };
-    PackageHelpers.prototype.setAllAsInstalled = function (packages) {
+    PackageHelpers.prototype.setAllAsInstalled = function(packages) {
         var _this = this;
-        $.each(packages, function (i, key) {
+        $.each(packages, function(i, key) {
             var packInfo = _this.scope.$root.packages[key.name];
             packInfo.alreadyInstalled = true;
             packInfo.listItemControl.downgrade = false;
@@ -213,54 +208,66 @@ var PackageHelpers = (function () {
             _this.scope.$root.packages[key.name] = packInfo;
         });
     };
-    PackageHelpers.prototype.getInstalledPackagesFromFile = function (packageManager, filePath, callback) {
+    PackageHelpers.prototype._extractNpmVersion = function(name, pkg) {
+        var version = undefined;
+        if (pkg.version) {
+            version = pkg.version;
+        } else if (pkg.peerMissing) {
+            version = pkg.required.version;
+        } else if (pkg.missing) {
+            version = '0'; //pkg.required;
+        } else {
+            console.warn(`Unknown format : ${name}`, pkg);
+        }
+
+        return version;
+    }
+    PackageHelpers.prototype.getInstalledPackagesFromFile = function(packageManager, filePath, callback) {
         var _this = this;
         if (packageManager === 'npm') {
             if (filePath === null) {
-                new NpmService_1.NpmService().getGlobalPackages(function (result) {
-                    $.each(result, function (i, key) {
+                new NpmService_1.NpmService().getGlobalPackages(function(result) {
+                    $.each(result, function(i, key) {
                         _this.addToInstalledPackages(key.name, key.version, true, false);
                     });
-                    setTimeout(function () {
+                    setTimeout(function() {
                         callback(_this.getAllInstalledPackages());
                     }, 250);
                 });
-            }
-            else {
-                new NpmService_1.NpmService().getInstalledPackagesFromFile(filePath, function (result) {
+            } else {
+                new NpmService_1.NpmService().getInstalledPackagesFromFile(filePath, function(result) {
                     if (result !== undefined && result !== null) {
-                        $.each(result.dependencies, function (key, val) {
-                            _this.addToInstalledPackages(key, val.version, true, false);
+                        $.each(result.dependencies, function(key, val) {
+                            _this.addToInstalledPackages(key, _this._extractNpmVersion(key, val), true, false);
                         });
                     }
-                    setTimeout(function () {
+                    setTimeout(function() {
                         callback(_this.getAllInstalledPackages());
                     }, 250);
                 });
             }
-        }
-        else if (packageManager === 'bower') {
-            new BowerService_1.BowerService().getInstalledPackagesFromFile(filePath, function (result) {
+        } else if (packageManager === 'bower') {
+            new BowerService_1.BowerService().getInstalledPackagesFromFile(filePath, function(result) {
                 if (result !== undefined && result !== null) {
-                    $.each(result.dependencies, function (key, val) {
+                    $.each(result.dependencies, function(key, val) {
                         _this.addToInstalledPackages(key, val.pkgMeta.version, true, false);
-                        $.each(val.dependencies, function (subKey, subVal) {
+                        $.each(val.dependencies, function(subKey, subVal) {
                             if (subVal.pkgMeta !== undefined)
                                 _this.addToInstalledPackages(subKey, subVal.pkgMeta.version, true, false);
                         });
                     });
                 }
-                setTimeout(function () {
+                setTimeout(function() {
                     callback(_this.getAllInstalledPackages());
                 }, 250);
             });
         }
     };
-    PackageHelpers.prototype.setLatestVersion = function (packageName, version, callback) {
+    PackageHelpers.prototype.setLatestVersion = function(packageName, version, callback) {
         var _this = this;
         var pack = this.scope.$root.activePackageExplorerItem;
         if (pack.packageManager === 'npm') {
-            new NpmService_1.NpmService().getLatestVersion(packageName, function (result) {
+            new NpmService_1.NpmService().getLatestVersion(packageName, function(result) {
                 var packInfo = _this.scope.$root.packages[packageName];
                 if (packInfo !== undefined) {
                     packInfo.listItemControl.loader = false;
@@ -269,15 +276,14 @@ var PackageHelpers = (function () {
                     packInfo.selectedVersion = result;
                     packInfo.detailControl.loader = false;
                     packInfo.detailControl.update = packInfo.alreadyInstalled && compareVersions(result, version) > 0;
-                    _this.scope.$root.$apply(function () {
+                    _this.scope.$root.$apply(function() {
                         _this.scope.$root.packages[packageName] = packInfo;
                         callback();
                     });
                 }
             });
-        }
-        else if (pack.packageManager === 'bower') {
-            new BowerService_1.BowerService().getLatestVersion(packageName, function (result) {
+        } else if (pack.packageManager === 'bower') {
+            new BowerService_1.BowerService().getLatestVersion(packageName, function(result) {
                 var packInfo = _this.scope.$root.packages[packageName];
                 if (packInfo !== undefined) {
                     packInfo.listItemControl.loader = false;
@@ -286,7 +292,7 @@ var PackageHelpers = (function () {
                     packInfo.selectedVersion = result;
                     packInfo.detailControl.loader = false;
                     packInfo.detailControl.update = packInfo.alreadyInstalled && compareVersions(result, version) > 0;
-                    _this.scope.$root.$apply(function () {
+                    _this.scope.$root.$apply(function() {
                         _this.scope.$root.packages[packageName] = packInfo;
                         callback();
                     });
@@ -294,13 +300,13 @@ var PackageHelpers = (function () {
             });
         }
     };
-    PackageHelpers.prototype.getSearchResult = function (query, callback) {
+    PackageHelpers.prototype.getSearchResult = function(query, callback) {
         var _this = this;
         var pack = this.scope.$root.activePackageExplorerItem;
         var searchResults = [];
         if (pack.packageManager === 'npm') {
-            new NpmService_1.NpmService().getSearchResult(query, function (result) {
-                $.each(result, function (i, val) {
+            new NpmService_1.NpmService().getSearchResult(query, function(result) {
+                $.each(result, function(i, val) {
                     var shownBefore = _this.scope.$root.packages[val.name] !== undefined;
                     var resultItem;
                     if (!shownBefore) {
@@ -327,18 +333,16 @@ var PackageHelpers = (function () {
                             }
                         };
                         _this.scope.$root.packages[val.name] = resultItem;
-                    }
-                    else {
+                    } else {
                         resultItem = _this.scope.$root.packages[val.name];
                     }
                     searchResults.push(resultItem);
                 });
                 callback(searchResults);
             });
-        }
-        else if (pack.packageManager === 'bower') {
-            new BowerService_1.BowerService().getSearchResult(query, function (result) {
-                $.each(result, function (i, val) {
+        } else if (pack.packageManager === 'bower') {
+            new BowerService_1.BowerService().getSearchResult(query, function(result) {
+                $.each(result, function(i, val) {
                     var shownBefore = _this.scope.$root.packages[val.name] !== undefined;
                     var resultItem;
                     if (!shownBefore) {
@@ -365,8 +369,7 @@ var PackageHelpers = (function () {
                             }
                         };
                         _this.scope.$root.packages[val.name] = resultItem;
-                    }
-                    else {
+                    } else {
                         resultItem = _this.scope.$root.packages[val.name];
                     }
                     searchResults.push(resultItem);
@@ -375,19 +378,18 @@ var PackageHelpers = (function () {
             });
         }
     };
-    PackageHelpers.prototype.getPackageDetailInfo = function (packageName, callback) {
+    PackageHelpers.prototype.getPackageDetailInfo = function(packageName, callback) {
         var pack = this.scope.$root.activePackageExplorerItem;
         if (pack.packageManager === 'npm') {
-            new NpmService_1.NpmService().getPackageDetailInfo(packageName, function (result) {
+            new NpmService_1.NpmService().getPackageDetailInfo(packageName, function(result) {
                 var packDetail = {
                     name: result.name,
                     versions: result.versions.reverse()
                 };
                 callback(packDetail);
             });
-        }
-        else if (pack.packageManager === 'bower') {
-            new BowerService_1.BowerService().getPackageDetailInfo(packageName, function (result) {
+        } else if (pack.packageManager === 'bower') {
+            new BowerService_1.BowerService().getPackageDetailInfo(packageName, function(result) {
                 var packDetail = {
                     name: result.name,
                     versions: result.versions
@@ -396,10 +398,10 @@ var PackageHelpers = (function () {
             });
         }
     };
-    PackageHelpers.prototype.getPackageDetailByVersion = function (packageName, version, callback) {
+    PackageHelpers.prototype.getPackageDetailByVersion = function(packageName, version, callback) {
         var pack = this.scope.$root.activePackageExplorerItem;
         if (pack.packageManager === 'npm') {
-            new NpmService_1.NpmService().getPackageDetailInfoByVersion(packageName, version, function (log, readMe) {
+            new NpmService_1.NpmService().getPackageDetailInfoByVersion(packageName, version, function(log, readMe) {
                 var packDetail = {
                     name: packageName,
                     version: version,
@@ -412,14 +414,12 @@ var PackageHelpers = (function () {
                 };
                 if (readMe !== undefined) {
                     callback(packDetail, new mdToHtml.Converter().makeHtml(readMe));
-                }
-                else {
+                } else {
                     callback(packDetail, '__empty__');
                 }
             });
-        }
-        else if (pack.packageManager === 'bower') {
-            new BowerService_1.BowerService().getPackageDetailByVersion(packageName, version, function (log, readMe) {
+        } else if (pack.packageManager === 'bower') {
+            new BowerService_1.BowerService().getPackageDetailByVersion(packageName, version, function(log, readMe) {
                 var packDetail = {
                     name: packageName,
                     version: version
@@ -435,14 +435,13 @@ var PackageHelpers = (function () {
                 }
                 if (readMe !== undefined) {
                     callback(packDetail, new mdToHtml.Converter().makeHtml(readMe));
-                }
-                else {
+                } else {
                     callback(packDetail, '__empty__');
                 }
             });
         }
     };
-    PackageHelpers.prototype.runCommand = function (command, pack, callback) {
+    PackageHelpers.prototype.runCommand = function(command, pack, callback) {
         var packageName = pack.name;
         var version = pack.selectedVersion;
         var isDevDependencies = pack.isDevDependencies;
@@ -453,16 +452,13 @@ var PackageHelpers = (function () {
             if (version !== undefined && version !== null && version !== '')
                 packageName += "||" + version;
             this.install([packageName], isDevDependencies, callback);
-        }
-        else if (command === 'uninstall') {
+        } else if (command === 'uninstall') {
             this.uninstall([packageName], false, callback);
-        }
-        else if (command === 'installAsDev') {
+        } else if (command === 'installAsDev') {
             if (version !== undefined && version !== null && version !== '')
                 packageName += "||" + version;
             this.install([packageName], true, callback);
-        }
-        else if (command === 'update' || command === 'downgrade') {
+        } else if (command === 'update' || command === 'downgrade') {
             if (version !== undefined && version !== null && version !== '')
                 packageName += "||" + version;
             this.update([packageName], isDevDependencies, callback);
