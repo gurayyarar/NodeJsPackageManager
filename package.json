@@ -29,10 +29,9 @@
         "underscore": "^1.8.3"
     },
     "devDependencies": {
-        "electron": "^2.0.1",
-        "electron-builder": "^20.13.4",
-        "gulp": "^3.9.1",
-        "gulp-sass": "^4.0.1"
+        "electron": "^4.1.0",
+        "electron-builder": "^20.39.0",
+        "gulp-sass": "^4.0.2"
     },
     "build": {
         "appId": "com.gurayyarar.nodejspackagemanager",
