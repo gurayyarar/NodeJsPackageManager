@@ -22,7 +22,7 @@
         "compare-versions": "^3.0.1",
         "font-awesome": "^4.7.0",
         "get-package-readme": "^1.2.0",
-        "jquery": "^3.2.1",
+        "jquery": "^3.4.0",
         "noty": "^3.1.1",
         "q": "^1.5.0",
         "showdown": "^1.7.1",
