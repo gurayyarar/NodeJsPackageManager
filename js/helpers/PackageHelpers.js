@@ -213,6 +213,21 @@ var PackageHelpers = (function () {
             _this.scope.$root.packages[key.name] = packInfo;
         });
     };
+    PackageHelpers.prototype._extractNpmVersion = function(name, pkg) {
+        var version = undefined;
+        if (pkg.version) {
+            version = pkg.version;
+        } else if (pkg.peerMissing) {
+            version = pkg.required.version;
+        } else if (pkg.missing) {
+            version = '0'; //pkg.required;
+        } else {
+            version = '0';
+            console.warn(`Unknown format : ${name}`, pkg);
+        }
+
+        return version;
+    };
     PackageHelpers.prototype.getInstalledPackagesFromFile = function (packageManager, filePath, callback) {
         var _this = this;
         if (packageManager === 'npm') {
@@ -230,7 +245,7 @@ var PackageHelpers = (function () {
                 new NpmService_1.NpmService().getInstalledPackagesFromFile(filePath, function (result) {
                     if (result !== undefined && result !== null) {
                         $.each(result.dependencies, function (key, val) {
-                            _this.addToInstalledPackages(key, val.version, true, false);
+                            _this.addToInstalledPackages(key, _this._extractNpmVersion(key, val), true, false);
                         });
                     }
                     setTimeout(function () {
